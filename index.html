@@ -7,25 +7,46 @@
     <link rel="stylesheet" href="./src/output.css">
 </head>
 <body class="bg-slate-50 text-slate-900">
-    <header class="flex items-center justify-between border-b bg-white px-6 py-4">
-        <div>
-            <h1 class="text-2xl font-bold tracking-tight">Pulse</h1>
+    <header class="relative z-40 flex items-center justify-between px-4 py-4 bg-white border-b md:px-6">
+
+        <!-- This div groups the entity and the Pulse into one unit inside the main nav -->
+        <div class="flex items-center gap-2">
+            <button id="menu-button" class="p-2 rounded-lg hover:bg-slate-100 md:hidden" aria-label="Open navigation" aria-expanded="false">
+                <span aria-hidden="true">&#9776;</span>
+            </button>
+            <div>
+                <h1 class="text-2xl font-bold tracking-tight">Pulse</h1>
+            </div>
         </div>
 
-        <div>
-            <button class="rounded-lg px-3 py-2 text-sm hover:bg-slate-100">Notifications</button>
-            <button class="rounded-lg px-3 py-2 text-sm hover:bg-slate-100">Profile</button>
+        <div class="flex items-center gap-2">
+            <div class="relative" id="notifications-wrapper">
+                <button id="notifications-button" class="px-3 py-2 text-sm rounded-lg hover:bg-slate-100" aria-haspopup="true" aria-expanded="false">Notifications</button>
+                <div id="notifications-dropdown" class="absolute right-0 w-64 mt-2 bg-white border shadow-lg rounded-xl" hidden>
+                    <ul class="py-2 text-sm divide-y">
+                        <li class="px-4 py-2">Your weekly report is ready</li>
+                        <li class="px-4 py-2">3 tasks are due today</li>
+                        <li class="px-4 py-2">New comment on "Pulse dashboard"</li>
+                    </ul>
+                </div>
+            </div>
+            <button disabled class="px-3 py-2 text-sm rounded-lg hover:bg-slate-100">Profile</button>
         </div>
     </header>
 
+    <!-- Groups the sidebar and the main content into one so for the division of the availble width and for direction of division too -->
     <div class="flex">
-        <aside class="w-64 shrink-0 border-r bg-white p-4">
+        <aside
+            id="sidebar"
+            class="fixed inset-y-0 left-0 z-30 w-64 p-4 transition-transform duration-200 -translate-x-full bg-white border-r shrink-0 md:static md:translate-x-0">
+
+            
             <nav class="space-y-2">
-                <button class="w-full rounded-lg px-4 py-3 text-left text-sm hover:bg-slate-100">Overview</button>
-                <button class="w-full rounded-lg px-4 py-3 text-left text-sm hover:bg-slate-100">Tasks</button>
-                <button class="w-full rounded-lg px-4 py-3 text-left text-sm hover:bg-slate-100">Activity</button>
-                <button class="w-full rounded-lg px-4 py-3 text-left text-sm hover:bg-slate-100">Reports</button>
-                <button class="w-full rounded-lg px-4 py-3 text-left text-sm hover:bg-slate-100">Settings</button>
+                <button class="w-full px-4 py-3 text-sm text-left rounded-lg sidebar-nav-button hover:bg-slate-100" data-tab="overview">Overview</button>
+                <button class="w-full px-4 py-3 text-sm text-left rounded-lg sidebar-nav-button hover:bg-slate-100" data-tab="tasks">Tasks</button>
+                <button class="w-full px-4 py-3 text-sm text-left rounded-lg sidebar-nav-button hover:bg-slate-100" data-tab="activity">Activity</button>
+                <button disabled class="w-full px-4 py-3 text-sm text-left rounded-lg cursor-not-allowed opacity-40">Reports</button>
+                <button disabled class="w-full px-4 py-3 text-sm text-left rounded-lg cursor-not-allowed opacity-40">Settings</button>
             </nav>
         </aside>
 
@@ -35,54 +56,72 @@
                 <p class="mt-2 text-slate-500">Here's how your day is going</p>
             </section>
 
-            <section class="mb-8 grid gap-4 md:grid-cols-3">
-                <article class="rounded-xl border bg-white p-5 shadow-sm">
+            <section class="grid gap-4 mb-8 md:grid-cols-3">
+                <article class="p-5 bg-white border shadow-sm rounded-xl">
                     <h3 class="text-sm font-medium text-slate-500">Tasks</h3>
                     <p class="mt-2 text-2xl font-bold">7 / 10 Completed</p>
                 </article>
 
-                <article class="rounded-xl border bg-white p-5 shadow-sm">
-                    <h3 class="text-sm font-medium text-slate-500">Activiy</h3>
+                <article class="p-5 bg-white border shadow-sm rounded-xl">
+                    <h3 class="text-sm font-medium text-slate-500">Activity</h3>
                     <p class="mt-2 text-2xl font-bold">12 activities today</p>
                 </article>
 
-                <article class="rounded-xl border bg-white p-5 shadow-sm">
+                <article class="p-5 bg-white border shadow-sm rounded-xl">
                     <h3 class="text-sm font-medium text-slate-500">Streak</h3>
                     <p class="mt-2 text-2xl font-bold">7 days</p>
                 </article>
             </section>
 
-            <section class="mb-8 rounded-xl border bg-white p-5 shadow-sm">
-                <div class="mb-5 flex gap-2 border-b">
-                    <button class="border-b-2 border-slate-900 px-4 py-3 text-sm font-medium">Overview</button>
-                    <button>Tasks</button>
-                    <button>Activity</button>
+            <section class="p-5 mb-8 bg-white border shadow-sm rounded-xl">
+                <div class="flex gap-2 mb-5 border-b">
+                    <button class="px-4 py-3 text-sm font-medium border-b-2 tab-button border-slate-900 text-slate-900" data-tab="overview" aria-selected="true">Overview</button>
+                    <button class="px-4 py-3 text-sm font-medium border-b-2 border-transparent tab-button text-slate-500" data-tab="tasks" aria-selected="false">Tasks</button>
+                    <button class="px-4 py-3 text-sm font-medium border-b-2 border-transparent tab-button text-slate-500" data-tab="activity" aria-selected="false">Activity</button>
                 </div>
 
-                <div>
-                    <h2>Overview</h2>
-                    <p>Your dashboard overview will appear here.</p>
+                <div class="tab-panel" data-panel="overview">
+                    <h2 class="font-semibold">Overview</h2>
+                    <p class="text-slate-500">Your dashboard overview will appear here.</p>
+                </div>
+                <div class="tab-panel" data-panel="tasks" hidden>
+                    <div class="flex items-center justify-between mb-3">
+                        <h2 class="font-semibold">Tasks</h2>
+                        <button id="add-task-button" class="px-3 py-2 text-sm text-white rounded-lg bg-slate-900 hover:bg-slate-700">+ Add Task</button>
+                    </div>
+                    <p class="text-slate-500">Your task list will appear here.</p>
+                </div>
+                <div class="tab-panel" data-panel="activity" hidden>
+                    <h2 class="font-semibold">Activity</h2>
+                    <p class="text-slate-500">Your recent activity summary will appear here.</p>
                 </div>
             </section>
 
             <section>
-                <label for="search">Search activity</label>
+                <label for="search" class="block mb-2 text-sm font-medium">Search activity</label>
+                <input type="search" id="search" placeholder="Search your activity" class="w-full max-w-sm px-3 py-2 mb-6 border rounded-lg">
 
-                <input type="search" id="search" placeholder="Search your activity">
-            </section>
-
-            <section>
-                <h2>Recent Activity</h2>
-
-                <div>
-                    <p>Completed Mathematics assignment</p>
-                    <p>Read 20 pages of a book</p>
-                    <p>Completed JavaScript practice</p>
-                    <p>Worked on Pulse dashboard</p>
-                </div>
+                <h2 class="mb-3 font-semibold">Recent Activity</h2>
+                <ul id="activity-list" class="space-y-2"></ul>
             </section>
         </main>
     </div>
 
+    <div id="modal-backdrop" class="fixed inset-0 z-50 items-center justify-center hidden bg-black/50" hidden>
+        <div id="modal-panel" class="w-full max-w-md p-6 mx-4 bg-white shadow-lg rounded-xl" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+            <div class="flex items-center justify-between mb-4">
+                <h2 id="modal-title" class="text-lg font-semibold">Add a task</h2>
+                <button id="modal-close-button" class="p-1 rounded-lg hover:bg-slate-100" aria-label="Close">&times;</button>
+            </div>
+            <label for="task-name" class="block mb-1 text-sm font-medium">Task name</label>
+            <input type="text" id="task-name" placeholder="e.g. Finish JavaScript practice" class="w-full px-3 py-2 mb-4 border rounded-lg">
+            <div class="flex justify-end gap-2">
+                <button id="modal-cancel-button" class="px-4 py-2 text-sm rounded-lg hover:bg-slate-100">Cancel</button>
+                <button id="modal-save-button" class="px-4 py-2 text-sm text-white rounded-lg bg-slate-900 hover:bg-slate-700">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="src/main.js" crossorigin="anonymous" type="module"></script>
 </body>
 </html>
