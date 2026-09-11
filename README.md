@@ -15,6 +15,10 @@ A responsive, single-page dashboard built for daily tasks/activity management. I
 
 HTML, Tailwind CSS (CLI build), vanilla JavaScript — no frameworks or libraries, no backend.
 
+## Public links
+1. GitHub: [https://github.com/bryannnsom48-lab/INTERACTIVE-DASHBOARD.git]
+2. Netlify: [https://bryann-pulse-dashboard.netlify.app]
+
 ## Running it locally
 1. Rebuild the CSS: `npx tailwindcss -i ./src/input.css -o ./src/output.css --watch`
 2. Open with LiveServer using VS Code OR Serve the folder with any static server (for example `npx serve`) in a second terminal
