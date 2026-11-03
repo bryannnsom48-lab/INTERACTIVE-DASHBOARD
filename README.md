@@ -1,3 +1,5 @@
+# A React version of this project is here: https://github.com/bryannnsom48-lab/pulse-react.git
+
 # Pulse — Interactive Dashboard
 
 A responsive, single-page dashboard built for daily tasks/activity management. It's built with plain HTML, Tailwind CSS, and vanilla JavaScript — to demonstrate DOM selection, event handling, and state-driven UI updates.
